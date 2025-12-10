@@ -41,7 +41,7 @@ class MuJoCoViewer:
         # 마우스, 키보드 콜백
         mousecallbacks = MouseCallbacks()
         kbdcallbacks = KeyboardCallbacks()
-        glfw.set_key_callback(self.window_main, lambda w, k, sc, act, m: kbdcallbacks.keyboardGLFW(w, k, sc, act, m, self.model, self.data))
+        glfw.set_key_callback(self.window_main, lambda w, k, sc, act, m: kbdcallbacks.keyboardGLFW(w, k, sc, act, m, self.model, self.data, self.opt))        
         glfw.set_cursor_pos_callback(self.window_main, lambda w, x, y: mousecallbacks.mouse_move(w, x, y, self.model, self.scene_main, self.main_cam))
         glfw.set_mouse_button_callback(self.window_main, lambda w, b, act, m: mousecallbacks.mouse_button(w, b, act, m))
         glfw.set_scroll_callback(self.window_main, lambda w, xo, yo: mousecallbacks.scroll(w, xo, yo, self.model, self.scene_main, self.main_cam))
