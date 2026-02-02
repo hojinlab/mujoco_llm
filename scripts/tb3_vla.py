@@ -1,8 +1,12 @@
 import os
 from queue import Queue
+from dotenv import load_dotenv
 
 from tb3_sim import TurtlebotFactorySim
-from gemini_tb3 import GeminiTb3
+# from gemini_tb3 import GeminiTb3
+from ollama_tb3 import OllamaTb3
+
+load_dotenv()
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.getcwd(), ".."))
 xml_path = os.path.join(PROJECT_ROOT, "asset", "robotis_tb3", "tb3_factory_cards.xml")
@@ -22,9 +26,14 @@ sim = TurtlebotFactorySim(
 )
 
 # 2) Gemini + YOLO + 명령 생성
-agent = GeminiTb3(
+# agent = GeminiTb3(
+#     prompt_path=prompt_path,
+#     model="gemini-robotics-er-1.5-preview",
+#     command_queue=cmd_q,
+# )
+agent = OllamaTb3(
     prompt_path=prompt_path,
-    model="gemini-robotics-er-1.5-preview",
+    model=os.environ["OLLAMA_MODEL"],
     command_queue=cmd_q,
 )
 
